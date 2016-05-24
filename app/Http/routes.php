@@ -11,7 +11,7 @@
 |
 */
 
-//Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', function () {
         return view('home');
@@ -22,7 +22,7 @@
     });
 
     Route::resource('point', 'PointController');
-//});
+});
 
 /*
 |--------------------------------------------------------------------------
