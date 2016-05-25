@@ -29,7 +29,8 @@ Route::group(['middleware' => ['web']], function () {
 | API routes
 |--------------------------------------------------------------------------
 */
-//Route::group([/*'middleware' => ['api'],*/'prefix' => 'api'], function () {
-    Route::resource('api/point', 'PointRestController');
-//});
-
+Route::group(['middleware' => ['api']], function () {
+    Route::group(['prefix' => 'api'], function () {
+        Route::resource('point', 'PointRestController');
+    });
+});
