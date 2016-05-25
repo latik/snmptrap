@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    var alarm = $('audio#alarm')[0];
+    var $alarm = $('<audio src="sound/alarm3.wav" id="alarm"></audio>');
+    $("body").append($alarm);
     var table = $("#commutator_table > tbody");
 
     var netswitches_comfirmed = [];
