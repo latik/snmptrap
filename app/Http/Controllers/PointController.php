@@ -16,7 +16,7 @@ class PointController extends Controller
      */
     public function index()
     {
-        $point = Point::paginate(10);
+        $point = Point::orderBy('updated_at', 'desc')->paginate(10);
 
         return view('point.index', compact('point'));
     }
