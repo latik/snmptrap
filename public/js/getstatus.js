@@ -39,7 +39,7 @@ $(document).ready(function () {
             $.each(data, function (key, netswitch) {
                 var status = netswitch.status;
 
-                table.append($('<tr data-netswitch-id="' + key + '" data-status="' + status + '">')
+                table.append($('<tr data-netswitch-id="' + netswitch.id + '" data-status="' + status + '">')
                     .append($('<td>')
                         .text(key)
                     )
