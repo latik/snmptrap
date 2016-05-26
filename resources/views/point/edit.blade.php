@@ -11,8 +11,15 @@
         'class' => 'form-horizontal'
     ]) !!}
 
-                <div class="form-group {{ $errors->has('district_id') ? 'has-error' : ''}}">
-                {!! Form::label('district_id', trans('point.district_id'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+                {!! Form::label('name', trans('point.name'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            <div class="form-group {{ $errors->has('district_id') ? 'has-error' : ''}}">
+                {!! Form::label('district_id', trans('point.district'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('district_id', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('district_id', '<p class="help-block">:message</p>') !!}

@@ -12,6 +12,7 @@ class PointsTableSeeder extends Seeder
     public function run()
     {
         DB::table('points')->insert([
+            'name' => 'точка',
             'district_id' => 1,
             'district' => 'Первый',
             'street' => 'название улицы',

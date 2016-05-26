@@ -14,6 +14,10 @@
                     <td>{{ $point->id }}</td>
                 </tr>
                 <tr>
+                    <th> {{ trans('point.name') }} </th>
+                    <td> {{ $point->name }} </td>
+                </tr>
+                <tr>
                     <th> {{ trans('point.district_id') }} </th>
                     <td> {{ $point->district_id }} </td>
                 </tr>

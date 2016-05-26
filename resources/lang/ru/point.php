@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'name' => 'Название',
     'district_id' => 'Номер мк-района',
     'district' => 'Мк-район',
     'street' => 'Улица',

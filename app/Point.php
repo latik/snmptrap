@@ -27,7 +27,7 @@ class Point extends Model
      *
      * @var array
      */
-    protected $fillable = ['district_id', 'district', 'street', 'building', 'entrance', 'status', 'ip', 'port'];
+    protected $fillable = ['name','district_id', 'district', 'street', 'building', 'entrance', 'status', 'ip', 'port'];
 
     protected static function boot()
     {

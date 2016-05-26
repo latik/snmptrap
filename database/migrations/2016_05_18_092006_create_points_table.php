@@ -14,6 +14,7 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->default('');
             $table->string('district_id')->default(0);
             $table->string('district')->nullable();
             $table->string('street')->nullable();

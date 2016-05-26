@@ -10,11 +10,7 @@
                 <tr>
                     <th>#</th>
                     <th>id</th>
-                    <th> {{ trans('point.district_id') }} </th>
-                    <th> {{ trans('point.district') }} </th>
-                    <th> {{ trans('point.street') }} </th>
-                    <th> {{ trans('point.building') }} </th>
-                    <th> {{ trans('point.entrance') }} </th>
+                    <th> {{ trans('point.name') }} </th>
                     <th> {{ trans('point.ip') }} </th>
                     <th> {{ trans('point.port') }} </th>
                     <th> {{ trans('point.status') }} </th>
@@ -29,11 +25,7 @@
                 <tr>
                     <td>{{ $x }}</td>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->district_id }}</td>
-                    <td>{{ $item->district }}</td>
-                    <td>{{ $item->street }}</td>
-                    <td>{{ $item->building }}</td>
-                    <td>{{ $item->entrance }}</td>
+                    <td>{{ $item->name }}</td>
                     <td>{{ $item->ip }}</td>
                     <td>{{ $item->port }}</td>
                     <td>{{ $item->status }}</td>
