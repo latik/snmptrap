@@ -32,9 +32,9 @@ $(document).ready(function () {
     });
 
     $.ajaxSetup({cache: false});
-    
+
     var chechStatus = function () {
-        $.getJSON("/status", function (data) {
+        $.getJSON("/status/district/"+filter, function (data) {
             table.empty();
             $.each(data, function (key, netswitch) {
                 var status = netswitch.status;

@@ -13,9 +13,11 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/', function () {
-        return view('home');
-    });
+Route::get('/status/district/{district_id}', function ($district_id) {
+    return App\Point::where('district_id', $district_id)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+});
 
     Route::get('/status', function () {
         return App\Point::orderBy('updated_at', 'desc')->get();
