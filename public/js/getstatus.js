@@ -85,5 +85,5 @@ $(document).ready(function () {
     };
 
     chechStatus();
-    setInterval(chechStatus, 5000);
+    setInterval(chechStatus, 1500);
 });
