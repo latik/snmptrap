@@ -22,6 +22,14 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::resource('point', 'PointController');
+
+    Route::resource('netdevice', 'NetdeviceController');
+
+    Route::get('import', function () {
+        return view('netdevice.import');
+    })->name('netdevice.import');
+
+    Route::post('import', 'NetdeviceController@import');
 });
 
 /*
