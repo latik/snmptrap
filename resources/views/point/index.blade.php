@@ -3,7 +3,22 @@
 @section('content')
 <div class="container">
 
-    <h1>Point <a href="{{ url('/point/create') }}" class="btn btn-primary btn-xs" title="Add New Point"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a></h1>
+
+    <div class="container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="Tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="/point">Точки</a>
+            </li>
+            <li role="presentation">
+                <a href="{{ url('/point/create') }}">Добавить новую</a>
+            </li>
+            <li role="presentation">
+                <a href="{{ url('/import') }}">Импорт</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>
