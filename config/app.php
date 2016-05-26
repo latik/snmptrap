@@ -151,12 +151,7 @@ return [
         Appzcoder\CrudGenerator\CrudGeneratorServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         GrahamCampbell\Flysystem\FlysystemServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
-        Prettus\Repository\Providers\RepositoryServiceProvider::class,
-        \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
-        \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -214,7 +209,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Flysystem' => GrahamCampbell\Flysystem\Facades\Flysystem::class,
-        'Flash'     => Laracasts\Flash\Flash::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
