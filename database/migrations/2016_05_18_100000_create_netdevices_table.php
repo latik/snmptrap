@@ -35,6 +35,7 @@ class CreateNetdevicesTable extends Migration
             $table->integer('abon_current')->nullable();
             $table->string('s_level')->nullable();
             $table->timestamps();
+            $table->foreign('parent_mac')->references('mac')->on('netdevices');
         });
     }
 

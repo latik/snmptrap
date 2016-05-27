@@ -22,6 +22,7 @@ class CreatePointsTable extends Migration
             $table->string('entrance')->nullable();
             $table->string('status')->nullable();
             $table->ipAddress('ip');
+            $table->foreign('ip')->references('ip')->on('netdevices')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('port')->unsigned();
             $table->unique(['ip', 'port']);
             $table->timestamps();
