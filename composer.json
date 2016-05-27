@@ -44,8 +44,10 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize",
-            "chmod -R a+w storage database bootstrap/cache"
+            "php -r \"copy('.env.example', '.env');\"",
+            "php artisan key:generate",
+            "chmod -R a+w storage database bootstrap/cache",
+            "php artisan optimize"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
