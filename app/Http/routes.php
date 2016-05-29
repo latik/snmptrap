@@ -11,7 +11,9 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::get('/status/district/{district_id}', function ($district_id) {
     return App\Point::where('district_id', $district_id)
@@ -19,20 +21,23 @@ Route::get('/status/district/{district_id}', function ($district_id) {
         ->get();
 });
 
-    Route::get('/status', function () {
-        return App\Point::orderBy('updated_at', 'desc')->get();
+
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
+    Route::group(['middleware' => ['auth']], function () {
+
+        Route::resource('point', 'PointController');
+
+        Route::resource('netdevice', 'NetdeviceController');
+
+        Route::get('import', function () {
+            return view('netdevice.import');
+        })->name('netdevice.import');
+
+        Route::post('import', 'NetdeviceController@import');
     });
-
-    Route::resource('point', 'PointController');
-
-    Route::resource('netdevice', 'NetdeviceController');
-
-    Route::get('import', function () {
-        return view('netdevice.import');
-    })->name('netdevice.import');
-
-    Route::post('import', 'NetdeviceController@import');
 });
+
 
 /*
 |--------------------------------------------------------------------------
