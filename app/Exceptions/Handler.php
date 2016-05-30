@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof ModelNotFoundException) {
-            if ($request->ajax()) {
+            if ($request->ajax() || $request->wantsJson()) {
                 return \Illuminate\Support\Facades\Response::json([
                     'message' => 'Not found',
                 ], 404);
