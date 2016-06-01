@@ -44,7 +44,7 @@ $(document).ready(function () {
                         .text(key)
                     )
                     .append($('<td>')
-                        .text(netswitch.district_id)
+                        .text(netswitch.guard)
                     )
                     .append($('<td>')
                         .text(netswitch.name)

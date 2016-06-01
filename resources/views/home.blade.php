@@ -22,7 +22,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th> {{ trans('point.district_id') }} </th>
+                            <th> {{ trans('point.guard') }} </th>
                             <th> {{ trans('point.name') }} </th>
                             <th> {{ trans('point.status') }} </th>
                             <th> {{ trans('point.updated_at') }} </th>
