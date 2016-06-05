@@ -23,16 +23,6 @@ class Trap
     public $input = '';
 
     /**
-     * @todo not working yet
-     * @param $input
-     * @return static
-     */
-    public static function createFromInput($input)
-    {
-        return new static($input);
-    }
-
-    /**
      * Trap constructor.
      * @param $input
      */
@@ -40,6 +30,7 @@ class Trap
     {
         $this->ip = $this->getIpAddress($input);
         $this->port = $this->getPort($input);
+        $this->status = $this->getStatus($input);
 
         $this->input = $input;
     }
@@ -75,5 +66,29 @@ class Trap
             $port = (int)$match[1];
         }
         return $port;
+    }
+
+    /**
+     * Extract port
+     * @param $input
+     * @return string $status
+     */
+    protected function getStatus($input)
+    {
+        $status = '';
+        if (preg_match('#IF-MIB::ifOperStatus.(\d+) (\w+)#iu', $input, $match)) {
+            $status = (string)trim($match[2]);
+        }
+        return $status;
+    }
+
+    /**
+     * @todo not working yet
+     * @param $input
+     * @return static
+     */
+    public static function createFromInput($input)
+    {
+        return new static($input);
     }
 }

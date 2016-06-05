@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-use GrahamCampbell\Flysystem\Facades\Flysystem;
 
+/**
+ * Class Point
+ * @package App
+ */
 class Point extends Model
 {
     /**
@@ -29,27 +31,11 @@ class Point extends Model
      */
     protected $fillable = ['name','district_id', 'district', 'street', 'building', 'entrance', 'status', 'ip', 'port'];
 
-    protected static function boot()
-    {
-        $export_closure = function () {
-            $points = static::all()->toJson();
-
-            Storage::disk('public')->put('status.json', $points);
-
-            Flysystem::connection('sftp')->put('status.json', $points);
-        };
-
-        parent::boot();
-
-        //static::saved($export_closure);
-        //static::deleted($export_closure);
-    }
-
+    /**
+     * @param $status
+     */
     public function changeStatus($status)
     {
-        if ($status !== 'up') {
-            $status = 'alarm';
-        }
         $this->status = $status;
         $this->save();
     }
