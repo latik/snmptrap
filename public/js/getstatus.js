@@ -4,7 +4,7 @@ $(document).ready(function () {
     var table = $("#commutator_table > tbody");
 
     var netswitches_comfirmed = [];
-    if (localStorage.netswitches_comfirmed){
+    if (localStorage.netswitches_comfirmed) {
         netswitches_comfirmed = JSON.parse(localStorage.netswitches_comfirmed || "[]")
     }
 
@@ -27,14 +27,14 @@ $(document).ready(function () {
         var row = $(this).closest("tr");
 
         var netswitch_id = row.data('netswitch-id');
-        netswitches_comfirmed.splice( $.inArray(netswitch_id, netswitches_comfirmed), 1 );
+        netswitches_comfirmed.splice($.inArray(netswitch_id, netswitches_comfirmed), 1);
         localStorage.netswitches_comfirmed = JSON.stringify(netswitches_comfirmed);
     });
 
     $.ajaxSetup({cache: false});
 
     var chechStatus = function () {
-        $.getJSON("/status/district/"+filter, function (data) {
+        $.getJSON("/status/district/" + filter, function (data) {
             table.empty();
             $.each(data, function (key, netswitch) {
                 var status = netswitch.status;
@@ -77,6 +77,11 @@ $(document).ready(function () {
                     } else {
                         row.css("background-color", "red");
                         alarm.play();
+                    }
+                } else {
+                    if ($.inArray(netswitch_id, netswitches_comfirmed) > -1) {
+                        netswitches_comfirmed.splice($.inArray(netswitch_id, netswitches_comfirmed), 1);
+                        localStorage.netswitches_comfirmed = JSON.stringify(netswitches_comfirmed);
                     }
                 }
             });
