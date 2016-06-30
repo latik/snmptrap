@@ -30,6 +30,8 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::resource('netdevice', 'NetdeviceController');
 
+        Route::resource('dashboard', 'DashboardController');
+
         Route::get('import', function () {
             return view('netdevice.import');
         })->name('netdevice.import');

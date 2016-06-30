@@ -14,6 +14,14 @@
                     <td>{{ $point->id }}</td>
                 </tr>
                 <tr>
+                    <th> {{ trans('point.netdevice.dashboards.title') }} </th>
+                    <td>
+                         @foreach ($point->dashboards as $dashboard)
+                            <p>{{ $dashboard->id }}</p>
+                         @endforeach
+                    </td>
+                </tr>
+                <tr>
                     <th> {{ trans('point.name') }} </th>
                     <td> {{ $point->name }} </td>
                 </tr>
