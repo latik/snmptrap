@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Console\Requests\Trap;
+use App\Trap;
 use App\Events\LinkChangeTrap;
 use Event;
 use Illuminate\Console\Command;

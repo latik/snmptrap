@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console\Requests;
+namespace App;
 
 /**
  * Class Trap
- * @package App\Console\Requests
+ * @package App
  */
 class Trap
 {

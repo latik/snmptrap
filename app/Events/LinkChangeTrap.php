@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Trap;
 use Illuminate\Queue\SerializesModels;
 
 class LinkChangeTrap extends Event
@@ -13,7 +14,7 @@ class LinkChangeTrap extends Event
      *
      * @return void
      */
-    public function __construct(\App\Console\Requests\Trap $trap)
+    public function __construct(Trap $trap)
     {
         $this->ip = $trap->ip;
         $this->port = $trap->port;
