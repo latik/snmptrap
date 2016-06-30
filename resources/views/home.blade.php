@@ -57,8 +57,5 @@
 @endsection
 
 @section('scripts')
-    <script>
-        var filter = 1;
-    </script>
-    <script src="/js/getstatus.js"></script>
+<script>var filter = 1;</script>
 @endsection
