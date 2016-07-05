@@ -41,8 +41,6 @@ $(document).ready(function () {
 
     $.ajaxSetup({cache: false});
 
-
-
     var checkStatus = function () {
         $.getJSON("/status/district/" + filter, function (data) {
             table.empty();
@@ -76,7 +74,7 @@ $(document).ready(function () {
             $('tr').each(function () {
                 var row = $(this);
                 var netswitch_id = row.data('netswitch-id');
-                if (row.data('status') == 'alarm') {
+                if (row.data('status') == 'down') {
                     if ($.inArray(netswitch_id, netswitches_comfirmed) > -1) {
                         row.css("background-color", "yellow");
                         row.find("span").removeClass("glyphicon-volume-up");
@@ -94,7 +92,6 @@ $(document).ready(function () {
                     }
                 }
             });
-
         });
     };
 
