@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Мониторинг cтатусов магистральных портов(downlinks)</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
