@@ -29,4 +29,16 @@ class Kernel extends ConsoleKernel
                   ->everyMinute()
                   ->withoutOverlapping();
     }
+
+    /**
+     * Register the Closure based commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        // $this->command('build {project}', function ($project) {
+        //     $this->info('Building project...');
+        // });
+    }
 }
