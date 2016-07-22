@@ -11,24 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/status/district/{district_id}', function ($district_id) {
-    return App\Point::where('district_id', $district_id)
-        ->orderBy('updated_at', 'desc')
-        ->get();
-});
-
 Route::auth();
 
-Route::group(['middleware' => ['auth']], function () {
+Route::get('logout', function () {
+    Auth::logout();
+    Session::flush();
 
+    return Redirect::to(preg_replace("/:\/\//", "://log:out@", url('/')));
+});
+
+Route::group(['middleware' => ['auth.basic']], function () {
+    Route::resource('user', 'UserController');
+    Route::resource('logs', 'LogsController');
     Route::resource('point', 'PointController');
-
     Route::resource('netdevice', 'NetdeviceController');
-
     Route::resource('dashboard', 'DashboardController');
 
     Route::get('import', function () {
@@ -36,4 +32,18 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('netdevice.import');
 
     Route::post('import', 'NetdeviceController@import');
+
+    Route::get('/', function () {
+        return view('home', [
+            'dashboards' => \App\Dashboard::all(),
+            'active' => 1,
+        ]);
+    });
+
+    Route::get('/status/dashboard/{dashboard}', function (\App\Dashboard $dashboard) {
+        return App\Point::whereRaw($dashboard->getAttribute('sql'))
+            ->orderBy('updated_at', 'desc')
+            ->limit(50)
+            ->get();
+    });
 });
