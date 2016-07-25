@@ -26,4 +26,12 @@ class Dashboard extends Model
      * @var array
      */
     protected $fillable = ['title'];
+
+    /**
+     * The points that belong to the dashboard.
+     */
+    public function points()
+    {
+        return $this->belongsToMany(Point::class);
+    }
 }

@@ -39,4 +39,20 @@ class Point extends Model
         $this->status = $status;
         $this->save();
     }
+
+    /**
+     * Get the netdevice that owns the point.
+     */
+    public function netdevice()
+    {
+        return $this->belongsTo(Netdevice::class, 'ip');
+    }
+
+    /**
+     * The points that belong to the dashboard.
+     */
+    public function dashboards()
+    {
+        return $this->belongsToMany(Dashboard::class);
+    }
 }
