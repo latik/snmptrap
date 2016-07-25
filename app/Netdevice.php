@@ -14,10 +14,10 @@ class Netdevice extends Model
     protected $table = 'netdevices';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +25,28 @@ class Netdevice extends Model
      *
      * @var array
      */
-    protected $fillable = ['city', 'new_district', 'street_name', 'house_name', 'doorway', 'house_id', 'ip', 'mac', 'dev_name', 'sw_role', 'vendor_model', 'inventary_state', 'community', 'vlan', 'mon_type', 'port_number', 'parent_mac', 'parent_port', 'abon_current', 's_level'];
+    protected $fillable = [
+        'city',
+        'new_district',
+        'street_name',
+        'house_name',
+        'doorway',
+        'house_id',
+        'ip',
+        'mac',
+        'dev_name',
+        'sw_role',
+        'vendor_model',
+        'inventary_state',
+        'community',
+        'vlan',
+        'mon_type',
+        'port_number',
+        'parent_mac',
+        'parent_port',
+        'abon_current',
+        's_level'
+    ];
 
     /**
      * Get the points for the netdevice.
