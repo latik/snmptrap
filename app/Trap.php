@@ -8,6 +8,9 @@ namespace App;
  */
 class Trap
 {
+    const IP_SNMP_PATTERN = '#SNMP-COMMUNITY-MIB::snmpTrapAddress.0 (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})#iu';
+
+    const IP_UDP_PATTERN = '#\[(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]:(\d+)->#iu';
 
     /**
      * @var null
@@ -43,11 +46,10 @@ class Trap
     protected function getIpAddress($input)
     {
         $ip = null;
-        if (preg_match('#SNMP-COMMUNITY-MIB::snmpTrapAddress.0 (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})#iu', $input,
-            $match)) {
+
+        if (preg_match(self::IP_SNMP_PATTERN, $input, $match)) {
             $ip = $match[1];
-        } elseif (preg_match('#\[(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]:(\d+)->#iu', $input,
-            $match)) {
+        } elseif (preg_match(self::IP_UDP_PATTERN, $input, $match)) {
             $ip = $match[1];
         }
 
