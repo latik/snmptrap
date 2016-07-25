@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', [
+        'dashboards' => \App\Dashboard::all(),
+        'active' => 1,
+    ]);
 });
 
 Route::get('/status/district/{district_id}', function ($district_id) {

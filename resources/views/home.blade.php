@@ -5,36 +5,19 @@
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="districtTabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#home" aria-controls="home" role="tab"
-                       data-toggle="tab" data-district="1">EdgeCore3510 Шевченковский</a>
-                </li>
-                <li role="presentation">
-                    <a href="#profile" aria-controls="profile" role="tab"
-                       data-toggle="tab" data-district="2">Бородинский</a>
-                </li>
+                @foreach ($dashboards as $board)
+                    <li role="presentation" @if ($board->id === $active) class="active" @endif  >
+                        <a href="#" aria-controls="page-{{ $board->id }}" role="tab"
+                           data-toggle="tab" data-district="1">{{ $board->title }}</a>
+                    </li>
+                @endforeach
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="home">
-                    <table id="commutator_table" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th> {{ trans('point.guard') }} </th>
-                            <th> {{ trans('point.name') }} </th>
-                            <th> {{ trans('point.status') }} </th>
-                            <th> {{ trans('point.updated_at') }} </th>
-                            <th> {{ trans('point.confirm') }} </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="profile">
-                    <div role="tabpanel" class="tab-pane active" id="home">
+                @foreach ($dashboards as $board)
+                    <div role="tabpanel" class="tab-pane fade @if ($board->id === $active) in active @endif"
+                         id="home-{{ $board->id }}">
                         <table id="commutator_table" class="table table-striped">
                             <thead>
                             <tr>
@@ -50,12 +33,13 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-<script>var filter = 1;</script>
+<script>var filter = {{ $active }};</script>
 @endsection
