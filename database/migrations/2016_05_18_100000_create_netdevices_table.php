@@ -12,7 +12,7 @@ class CreateNetdevicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('netdevices', function(Blueprint $table) {
+        Schema::create('netdevices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('city')->default('Zaporozhje');
             $table->string('new_district')->nullable();

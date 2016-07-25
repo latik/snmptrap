@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Netdevice;
 use App\Point;
 use Illuminate\Http\Request;
@@ -58,7 +57,7 @@ class NetdeviceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return void
      */
@@ -72,7 +71,7 @@ class NetdeviceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return void
      */
@@ -86,7 +85,7 @@ class NetdeviceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return void
      */
@@ -108,7 +107,7 @@ class NetdeviceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return void
      */
@@ -140,19 +139,18 @@ class NetdeviceController extends Controller
                     }
                 }
             }, 'CP1251//IGNORE');
-            
+
             //\Session::flash('success', 'Netswitches uploaded successfully.');
 
             //\DB::enableQueryLog();
 
-            $netdevices = Netdevice::where('new_district','Шевченковский')
+            $netdevices = Netdevice::where('new_district', 'Шевченковский')
                 ->where('vendor_model', 'LIKE', '%3510%')->get();
 
             //dd(\DB::getQueryLog());
-            //die;
 
-            foreach ($netdevices as $netdevice){
-                $parent = Netdevice::where('mac',$netdevice->parent_mac)->first();
+            foreach ($netdevices as $netdevice) {
+                $parent = Netdevice::where('mac', $netdevice->parent_mac)->first();
 
                 if ($parent) {
                     $point_data = [
@@ -167,20 +165,14 @@ class NetdeviceController extends Controller
                     ];
 
                     $point = Point::firstOrCreate($point_data);
-
-             /*       dd($point_data);
-                    dd($point);
-                    die;*/
                 }
-
             }
 
             return redirect(route('point.index'));
-        }
-        catch (\Exception $e) {
-            //\Session::flash('error', $e->getMessage());
-             dd($e);die;
-            //return redirect(route('netdevice.index'));
+        } catch (\Exception $e) {
+            \Session::flash('error', $e->getMessage());
+
+            return redirect(route('netdevice.index'));
         }
     }
 }

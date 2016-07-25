@@ -12,7 +12,7 @@ class CreateDashboardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dashboards', function(Blueprint $table) {
+        Schema::create('dashboards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->timestamps();

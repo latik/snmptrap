@@ -33,8 +33,6 @@ class LinkChangeTrapListener
 
             $point->changeStatus($trap->status);
             Log::info("point status changed");
-
-
         } catch (ModelNotFoundException $e) {
             Log::info("snmp trap catched, but Point not found.");
             //$this->error('snmp trap catched. Point not found.');

@@ -6,6 +6,7 @@ use App\Trap;
 use App\Events\LinkChangeTrap;
 use Event;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class TrapHandler extends Command
 {

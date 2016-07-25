@@ -29,7 +29,7 @@ class Point extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','district_id', 'district', 'street', 'building', 'entrance', 'status', 'ip', 'port'];
+    protected $fillable = ['name', 'district_id', 'district', 'street', 'building', 'entrance', 'status', 'ip', 'port'];
 
     /**
      * @param $status

@@ -12,7 +12,7 @@ class CreatePointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('points', function(Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->default('');
             $table->string('district_id')->default(0);
