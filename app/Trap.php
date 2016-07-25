@@ -46,7 +46,7 @@ class Trap
         if (preg_match('#SNMP-COMMUNITY-MIB::snmpTrapAddress.0 (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})#iu', $input,
             $match)) {
             $ip = $match[1];
-        } elseif (preg_match('#\[(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]:161->#iu', $input,
+        } elseif (preg_match('#\[(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]:(\d+)->#iu', $input,
             $match)) {
             $ip = $match[1];
         }
