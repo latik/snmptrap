@@ -1,3 +1,17 @@
+# cache directories
+Thumbs.db
+*.DS_Store
+*.empty
+*.tmp
+*.patch
+*.log*
+*.swp
+*.bak
+.#*
+
+#phpstorm project files
+.idea
+
 /vendor
 /node_modules
 /public/storage
