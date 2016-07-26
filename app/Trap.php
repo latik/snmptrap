@@ -24,7 +24,10 @@ class Trap
      * @var string
      */
     public $input = '';
-
+    /**
+     * @var string
+     */
+    public $oid = '';
     /**
      * Trap constructor.
      * @param $input
@@ -32,6 +35,7 @@ class Trap
     public function __construct($input)
     {
         $this->ip = $this->getIpAddress($input);
+        $this->oid = $this->getOID($input);
         $this->port = $this->getPort($input);
         $this->status = $this->getStatus($input);
 
@@ -54,6 +58,16 @@ class Trap
         }
 
         return $ip;
+    }
+
+    /**
+     * Extract port
+     * @param $input
+     * @return string $status
+     */
+    protected function getOID($input)
+    {
+        return $this->extractParam($input, self::REGEX_OID, 2);
     }
 
     /**
@@ -92,5 +106,25 @@ class Trap
     public static function createFromInput($input)
     {
         return new static($input);
+    }
+
+    /**
+     * Extract param value from string
+     * @param $input
+     * @param $regex
+     * @param $offset
+     * @internal param $match
+     * @return null|mixed
+     */
+    protected function extractParam($input, $regex, $offset)
+    {
+        $value = null;
+        if (preg_match($regex, $input, $match)) {
+            if (isset($match[$offset])) {
+                return $match[$offset];
+            }
+        }
+
+        return $value;
     }
 }
