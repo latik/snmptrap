@@ -8,9 +8,11 @@ namespace App;
  */
 class Trap
 {
-    const IP_SNMP_PATTERN = '#SNMP-COMMUNITY-MIB::snmpTrapAddress.0 (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})#iu';
-
-    const IP_UDP_PATTERN = '#\[(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]:(\d+)->#iu';
+    const REGEX_IP_SNMP = '#SNMP-COMMUNITY-MIB::snmpTrapAddress.0 (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})#iu';
+    const REGEX_IP_UDP = '#\[(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\]:(\d+)->#iu';
+    const REGEX_OID = '#SNMPv2-MIB::snmpTrapOID.(\d+) ([^\s]+)#iu';
+    const REGEX_PORT = '#IF-MIB::ifOperStatus.(\d+)#iu';
+    const REGEX_STATUS = '#IF-MIB::ifOperStatus.(\d+) (\w+)#iu';
 
     /**
      * @var null
@@ -49,12 +51,10 @@ class Trap
      */
     protected function getIpAddress($input)
     {
-        $ip = null;
+        $ip = $this->extractParam($input, self::REGEX_IP_SNMP, 1);
 
-        if (preg_match(self::IP_SNMP_PATTERN, $input, $match)) {
-            $ip = $match[1];
-        } elseif (preg_match(self::IP_UDP_PATTERN, $input, $match)) {
-            $ip = $match[1];
+        if ($ip == null) {
+            $ip = $this->extractParam($input, self::REGEX_IP_UDP, 1);
         }
 
         return $ip;
@@ -77,29 +77,21 @@ class Trap
      */
     protected function getPort($input)
     {
-        $port = 0;
-        if (preg_match('#IF-MIB::ifOperStatus.(\d+)#iu', $input, $match)) {
-            $port = (int)$match[1];
-        }
-        return $port;
+        return $this->extractParam($input, self::REGEX_PORT, 1);
     }
 
     /**
-     * Extract port
+     * Extract status
      * @param $input
      * @return string $status
      */
     protected function getStatus($input)
     {
-        $status = '';
-        if (preg_match('#IF-MIB::ifOperStatus.(\d+) (\w+)#iu', $input, $match)) {
-            $status = (string)trim($match[2]);
-        }
-        return $status;
+        return $this->extractParam($input, self::REGEX_STATUS, 2);
     }
 
     /**
-     * @todo not working yet
+     *
      * @param $input
      * @return static
      */
