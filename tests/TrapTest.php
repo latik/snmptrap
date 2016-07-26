@@ -30,6 +30,7 @@ class TrapTest extends TestCase
         $this->assertAttributeEquals('172.20.7.208', 'ip', $trap);
         $this->assertAttributeEquals(13, 'port', $trap);
         $this->assertAttributeEquals('up', 'status', $trap);
+        $this->assertAttributeEquals('IF-MIB::linkUp', 'oid', $trap);
     }
 
     public function test_create_trap_from_input_link_down()
@@ -84,5 +85,22 @@ class TrapTest extends TestCase
         $trap = \App\Trap::createFromInput($input);
 
         $this->assertAttributeEquals('172.20.7.208', 'ip', $trap);
+    }
+
+    public function test_create_trap_from_input_fan_status()
+    {
+        $input = '
+        UDP: [172.20.2.198]:161->[172.20.5.3]:162
+        DISMAN-EVENT-MIB::sysUpTimeInstance 45:3:34:54.25
+        SNMPv2-MIB::snmpTrapOID.0 SNMPv2-SMI::enterprises.171.10.94.89.89.0.176
+        SNMPv2-SMI::enterprises.171.10.94.89.89.2.3.1.0 "%Environment-A-FAN-STAT-CHNG: FAN# 1 status changed - not operational.
+        "
+        SNMPv2-SMI::enterprises.171.10.94.89.89.2.3.2.0 2
+        ';
+
+        $trap = \App\Trap::createFromInput($input);
+
+        $this->assertAttributeEquals('172.20.2.198', 'ip', $trap);
+        $this->assertAttributeEquals('SNMPv2-SMI::enterprises.171.10.94.89.89.0.176', 'oid', $trap);
     }
 }
