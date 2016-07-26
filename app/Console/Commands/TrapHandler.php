@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Trap;
 use App\Events\LinkChangeTrap;
+use App\Trap;
 use Event;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -15,7 +15,7 @@ class TrapHandler extends Command
      *
      * @var string
      */
-    protected $signature = 'snmp:trap {event} {trap?}';
+    protected $signature = 'snmp:trap {event?} {trap?}';
 
     /**
      * The console command description.
@@ -27,7 +27,6 @@ class TrapHandler extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -42,10 +41,20 @@ class TrapHandler extends Command
     public function handle()
     {
         $input = trim(stream_get_contents(STDIN));
-        
+
         $trap = Trap::createFromInput($input);
 
-        Event::fire(new LinkChangeTrap($trap));
+        // @todo need implement factory pattern
+        switch ($trap->oid) {
+            case 'IF-MIB::linkUp':
+            case 'IF-MIB::linkDown':
+                //Log::debug('LinkChangeTrap');
+                Event::fire(new LinkChangeTrap($trap));
+                break;
+            default:
+                Log::debug('UnknowTrap');
+                Log::debug($trap->oid);
+        }
 
         //Log::debug($input);
     }
