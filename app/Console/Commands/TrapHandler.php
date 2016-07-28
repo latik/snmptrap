@@ -48,12 +48,13 @@ class TrapHandler extends Command
         switch ($trap->oid) {
             case 'IF-MIB::linkUp':
             case 'IF-MIB::linkDown':
-                //Log::debug('LinkChangeTrap');
                 Event::fire(new LinkChangeTrap($trap));
                 break;
+            case 'SNMPv2-MIB::authenticationFailure':
+            case 'SNMPv2-SMI::enterprises.171.10.94.89.89.0.176':
+                break;
             default:
-                Log::debug('UnknowTrap');
-                Log::debug($trap->oid);
+                Log::debug("Unknown trap {$trap->oid} from {$trap->ip}");
         }
 
         //Log::debug($input);
