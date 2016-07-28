@@ -8,7 +8,6 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "~5.2",
-        "laravelcollective/remote": "~5.2",
         "league/flysystem-sftp": "^1.0",
         "graham-campbell/flysystem": "^3.4",
         "maatwebsite/excel": "^2.1",
