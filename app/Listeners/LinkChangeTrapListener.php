@@ -21,23 +21,22 @@ class LinkChangeTrapListener
     /**
      * Handle the event.
      *
-     * @param  LinkChangeTrap $trap
-     * @return void
+     * @param LinkChangeTrap $event
+     * @internal param LinkChangeTrap $trap
      */
-    public function handle(LinkChangeTrap $trap)
+    public function handle(LinkChangeTrap $event)
     {
         try {
-            $point = \App\Point::where('ip', $trap->ip)
-                ->where('port', $trap->port)
+            $point = \App\Point::where('ip', $event->trap->ip)
+                ->where('port', $event->trap->port)
                 ->firstOrFail();
 
-            $point->changeStatus($trap->status);
-            Log::info("point status changed");
+            $point->changeStatus($event->trap->status);
+
         } catch (ModelNotFoundException $e) {
-            Log::info("snmp trap catched, but Point not found.");
-            //$this->error('snmp trap catched. Point not found.');
+            Log::info("Point not found.");
         }
 
-        Log::info("trap catched: ip: {$trap->ip} port: {$trap->port} link: {$trap->status}");
+        Log::info("trap catched: ip: {$event->trap->ip} port: {$event->trap->port} link: {$event->trap->status}");
     }
 }

@@ -10,15 +10,18 @@ class LinkChangeTrap extends Event
     use SerializesModels;
 
     /**
+     * @var Trap
+     */
+    public $trap;
+
+    /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Trap $trap
      */
     public function __construct(Trap $trap)
     {
-        $this->ip = $trap->ip;
-        $this->port = $trap->port;
-        $this->status = $trap->status;
+        $this->trap = $trap;
     }
 
     /**
