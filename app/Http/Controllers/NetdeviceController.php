@@ -150,7 +150,7 @@ class NetdeviceController extends Controller
             //dd(\DB::getQueryLog());
 
             foreach ($netdevices as $netdevice) {
-                $parent = Netdevice::where('mac', $netdevice->parent_mac)->first();
+                $parent = $netdevice->parent();
 
                 if ($parent) {
                     $point_data = [

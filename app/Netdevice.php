@@ -55,4 +55,9 @@ class Netdevice extends Model
     {
         return $this->hasMany(Point::class, 'ip');
     }
+
+    public function parent()
+    {
+        return self::where('mac', $this->parent_mac)->first();
+    }
 }
