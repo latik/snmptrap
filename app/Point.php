@@ -33,11 +33,13 @@ class Point extends Model
 
     /**
      * @param $status
+     * @return bool
      */
     public function changeStatus($status)
     {
         $this->status = $status;
-        $this->save();
+        Log::info("point status changed");
+        return $this->save();
     }
 
     /**
