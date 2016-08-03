@@ -4,11 +4,11 @@
     <div class="container">
         <div>
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="districtTabs" role="tablist">
+            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
                 @foreach ($dashboards as $board)
                     <li role="presentation" @if ($board->id === $active) class="active" @endif  >
                         <a href="#" aria-controls="page-{{ $board->id }}" role="tab"
-                           data-toggle="tab" data-district="1">{{ $board->title }}</a>
+                           data-toggle="tab" data-dashboard="{{ $board->id }}">{{ $board->title }}</a>
                     </li>
                 @endforeach
             </ul>

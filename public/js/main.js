@@ -8,10 +8,10 @@ $(document).ready(function () {
         netswitches_comfirmed = JSON.parse(localStorage.netswitches_comfirmed || "[]")
     }
 
-    $(document).on('click', '#districtTabs a', function (e) {
+    $(document).on('click', '#dashboardTabs a', function (e) {
         e.preventDefault();
         $(this).tab('show');
-        filter = $(this).data('district');
+        filter = $(this).data('dashboard');
         table.empty();
         checkStatus();
     });
@@ -42,7 +42,7 @@ $(document).ready(function () {
     $.ajaxSetup({cache: false});
 
     var checkStatus = function () {
-        $.getJSON("/status/district/" + filter, function (data) {
+        $.getJSON("/status/dashboard/" + filter, function (data) {
             table.empty();
             $.each(data, function (key, netswitch) {
                 var status = netswitch.status;
@@ -74,7 +74,7 @@ $(document).ready(function () {
             $('tr').each(function () {
                 var row = $(this);
                 var netswitch_id = row.data('netswitch-id');
-                if (row.data('status') == 'down') {
+                if (row.data('status') !== undefined && row.data('status') !== null && row.data('status') !== 'up' ) {
                     if ($.inArray(netswitch_id, netswitches_comfirmed) > -1) {
                         row.css("background-color", "yellow");
                         row.find("span").removeClass("glyphicon-volume-up");

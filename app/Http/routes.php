@@ -11,6 +11,8 @@
 |
 */
 
+use App\Dashboard;
+
 Route::get('/', function () {
     return view('home', [
         'dashboards' => \App\Dashboard::all(),
@@ -18,9 +20,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/status/district/{district_id}', function ($district_id) {
-    return App\Point::where('district_id', $district_id)
-        ->orderBy('updated_at', 'desc')
+Route::get('/status/dashboard/{dashboard}', function (Dashboard $dashboard) {
+    return App\Point::whereRaw($dashboard->getAttribute('sql'))
+        ->orderByRaw('status desc, updated_at desc')
+        ->limit(50)
         ->get();
 });
 
