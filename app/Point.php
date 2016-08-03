@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Log;
 
 /**
  * Class Point
@@ -37,9 +38,11 @@ class Point extends Model
      */
     public function changeStatus($status)
     {
-        $this->status = $status;
-        Log::info("point status changed");
-        return $this->save();
+        $this->setAttribute('status', $status);
+
+        if ($this->save()) {
+            Log::info("point status changed");
+        }
     }
 
     /**
