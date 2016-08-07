@@ -50,7 +50,7 @@ class Point extends Model
      */
     public function netdevice()
     {
-        return $this->belongsTo(Netdevice::class, 'ip');
+        return $this->belongsTo(Netdevice::class, 'ip', 'ip');
     }
 
     /**
