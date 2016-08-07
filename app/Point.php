@@ -60,4 +60,13 @@ class Point extends Model
     {
         return $this->belongsToMany(Dashboard::class);
     }
+
+    public function refreshStatus()
+    {
+        Log::debug("try check point status!!");
+
+        if (null !== $this->netdevice) {
+            $this->changeStatus($this->netdevice->getPortStatus($this->port));
+        }
+    }
 }
