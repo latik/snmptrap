@@ -63,11 +63,15 @@ class Netdevice extends Model
 
     public function getPortStatus(int $port)
     {
-        // RFC1213-MIB
+        // RFC 2863
         $status_map = [
-            1 => 'up',
+            1 => 'up',              //ready to pass packets
             2 => 'down',
-            3 => 'testing',
+            3 => 'testing',         // in some test mode
+            4 => 'unknown',         // status can not be determined for some reason.
+            5 => 'dormant',
+            6 => 'notPresent',      // some component is missing
+            7 => 'lowerLayerDown',  // down due to state of lower-layer interface(s)
         ];
 
         $status_code = $this->snmp_get('ifOperStatus.' . $port);
