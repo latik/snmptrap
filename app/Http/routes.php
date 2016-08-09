@@ -16,6 +16,14 @@ use App\Point;
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
+
+    Route::get('logout', function() {
+        Auth::logout();
+        Session::flush();
+
+        return Redirect::to(preg_replace("/:\/\//", "://log:out@", url('/')));
+    });
+
     Route::group(['middleware' => ['auth.basic']], function () {
 
         Route::resource('point', 'PointController');
