@@ -12,25 +12,11 @@
 */
 
 use App\Dashboard;
-
-Route::get('/', function () {
-    return view('home', [
-        'dashboards' => \App\Dashboard::all(),
-        'active' => 1,
-    ]);
-});
-
-Route::get('/status/dashboard/{dashboard}', function (Dashboard $dashboard) {
-    return App\Point::whereRaw($dashboard->getAttribute('sql'))
-        ->orderByRaw('status desc, updated_at desc')
-        ->limit(50)
-        ->get();
-});
-
+use App\Point;
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth.basic']], function () {
 
         Route::resource('point', 'PointController');
 
@@ -43,9 +29,22 @@ Route::group(['middleware' => ['web']], function () {
         })->name('netdevice.import');
 
         Route::post('import', 'NetdeviceController@import');
+
+        Route::get('/', function () {
+            return view('home', [
+                'dashboards' => \App\Dashboard::all(),
+                'active' => 1,
+            ]);
+        });
+
+        Route::get('/status/dashboard/{dashboard}', function (Dashboard $dashboard) {
+            return App\Point::whereRaw($dashboard->getAttribute('sql'))
+                ->orderByRaw('updated_at desc')
+                ->limit(50)
+                ->get();
+        });
     });
 });
-
 
 /*
 |--------------------------------------------------------------------------
