@@ -28,15 +28,10 @@ class PointRestController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'ip' => 'required|ip',
-                'port' => "required|integer|unique:points,port,null,ip,ip,{$request->input('ip')}",
-            ]);
-        } catch (\Illuminate\Foundation\Validation\ValidationException $e) {
-            //$validator->messages()->toJson();
-            dd($e);
-        }
+        $this->validate($request, [
+            'ip' => 'required|ip',
+            'port' => "required|integer|unique:points,port,null,ip,ip,{$request->input('ip')}",
+        ]);
 
         return Point::create($request->all());
     }
@@ -72,6 +67,6 @@ class PointRestController extends Controller
      */
     public function destroy($id)
     {
-        Point::destroy($id);
+        Point::findOrFail($id)->delete();;
     }
 }
