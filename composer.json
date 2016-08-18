@@ -13,7 +13,8 @@
         "graham-campbell/flysystem": "^3.4",
         "maatwebsite/excel": "^2.1",
         "doctrine/dbal": "^2.5",
-        "whitehat101/apr1-md5": "^1.0"
+        "whitehat101/apr1-md5": "^1.0",
+        "pedrofornaza/monolog-mysql": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
