@@ -25,11 +25,9 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['middleware' => ['auth.basic']], function () {
-
+        Route::resource('logs', 'LogsController');
         Route::resource('point', 'PointController');
-
         Route::resource('netdevice', 'NetdeviceController');
-
         Route::resource('dashboard', 'DashboardController');
 
         Route::get('import', function () {
