@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Rest;
 
+use App\Http\Controllers\Controller;
 use App\Point;
 use Illuminate\Http\Request;
 use Response;
@@ -9,8 +10,7 @@ use Response;
 /**
  * Class PointController
  */
-
-class PointRestController extends Controller
+class PointController extends Controller
 {
     /**
      * @param Request $request
