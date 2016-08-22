@@ -45,7 +45,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/status/dashboard/{dashboard}', function (Dashboard $dashboard) {
             return App\Point::whereRaw($dashboard->getAttribute('sql'))
-                ->orderByRaw('updated_at desc')
+                ->orderBy('updated_at', 'desc')
                 ->limit(50)
                 ->get();
         });
