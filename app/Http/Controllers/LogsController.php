@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Log;
+use App\Logs;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -19,7 +19,7 @@ class LogsController extends Controller
      */
     public function index()
     {
-        $logs = Log::orderBy('created_at', 'desc')
+        $logs = Logs::orderBy('created_at', 'desc')
             ->paginate(15);
 
         return view('logs.index', compact('logs'));
@@ -43,7 +43,7 @@ class LogsController extends Controller
     public function store(Request $request)
     {
 
-        Log::create($request->all());
+        Logs::create($request->all());
 
         Session::flash('flash_message', 'Log added!');
 
@@ -59,7 +59,7 @@ class LogsController extends Controller
      */
     public function show($id)
     {
-        $log = Log::findOrFail($id);
+        $log = Logs::findOrFail($id);
 
         return view('logs.show', compact('log'));
     }
@@ -73,7 +73,7 @@ class LogsController extends Controller
      */
     public function edit($id)
     {
-        $log = Log::findOrFail($id);
+        $log = Logs::findOrFail($id);
 
         return view('logs.edit', compact('log'));
     }
@@ -88,7 +88,7 @@ class LogsController extends Controller
     public function update($id, Request $request)
     {
 
-        $log = Log::findOrFail($id);
+        $log = Logs::findOrFail($id);
         $log->update($request->all());
 
         Session::flash('flash_message', 'Log updated!');
@@ -105,7 +105,7 @@ class LogsController extends Controller
      */
     public function destroy($id)
     {
-        Log::destroy($id);
+        Logs::destroy($id);
 
         Session::flash('flash_message', 'Log deleted!');
 

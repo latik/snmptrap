@@ -20,11 +20,19 @@
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>{{ trans('log.level') }} </th>
+                <th>{{ trans('log.message') }} </th>
+                <th>{{ trans('log.time') }} </th>
+            </tr>
+            </thead>
             <tbody>
                 <tr>
-                    <th>ID</th><td>{{ $log->id }}</td>
+                    <td>{{ $log->level_name }}</td>
+                    <td>{{ $log->message }}</td>
+                    <td>{{ $log->created_at }}</td>
                 </tr>
-                
             </tbody>
         </table>
     </div>
