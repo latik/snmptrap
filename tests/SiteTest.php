@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SiteTest extends TestCase
 {
+    use WithoutMiddleware, DatabaseMigrations;
+
     /**
      * A basic functional test example.
      *
