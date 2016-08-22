@@ -124,7 +124,6 @@ class NetdeviceController extends Controller
     public function import(Request $request)
     {
         \DB::table('netdevices')->truncate();
-        \DB::table('points')->truncate();
 
         $this->validate($request, [
             'file' => 'required'
@@ -140,14 +139,7 @@ class NetdeviceController extends Controller
                 }
             }, 'CP1251//IGNORE');
 
-            //\Session::flash('success', 'Netswitches uploaded successfully.');
-
-            //\DB::enableQueryLog();
-
-            $netdevices = Netdevice::where('new_district', 'Шевченковский')
-                ->where('vendor_model', 'LIKE', '%3510%')->get();
-
-            //dd(\DB::getQueryLog());
+            $netdevices = Netdevice::all();
 
             foreach ($netdevices as $netdevice) {
                 $parent = $netdevice->parent();
@@ -167,8 +159,10 @@ class NetdeviceController extends Controller
                     $point = Point::firstOrCreate($point_data);
                 }
             }
+            \Session::flash('success', 'Netswitches imported successfully.');
 
             return redirect(route('point.index'));
+
         } catch (\Exception $e) {
             \Session::flash('error', $e->getMessage());
 
