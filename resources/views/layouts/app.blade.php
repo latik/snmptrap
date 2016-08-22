@@ -28,6 +28,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         {{-- <li><a href="{{ url('/register') }}">Register</a></li> --}}
                     @else
+                        <li><a href="{{ url('/user') }}">Users</a></li>
                         <li><a href="{{ url('/dashboard') }}">Dashboards</a></li>
                         <li><a href="{{ url('/netdevice') }}">Netdevices</a></li>
                         <li><a href="{{ url('/point') }}">Points</a></li>
