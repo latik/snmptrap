@@ -25,13 +25,17 @@ class Dashboard extends Model
      *
      * @var array
      */
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'sql'];
 
     /**
      * The points that belong to the dashboard.
      */
     public function points()
     {
-        return $this->belongsToMany(Point::class);
+
+        return $this
+            ->belongsToMany(Point::class)
+            ->orWhereRaw($this->getAttribute('sql'))
+            ->get();
     }
 }

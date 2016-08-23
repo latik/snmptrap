@@ -8,7 +8,10 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th><th> {{ trans('dashboard.title') }} </th><th>Actions</th>
+                    <th>S.No</th>
+                    <th> {{ trans('dashboard.title') }} </th>
+                    <th> {{ trans('dashboard.sql') }} </th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +21,7 @@
                 <tr>
                     <td>{{ $x }}</td>
                     <td>{{ $item->title }}</td>
+                    <td>{{ $item->sql }}</td>
                     <td>
                         <a href="{{ url('/dashboard/' . $item->id) }}" class="btn btn-success btn-xs" title="View Dashboard"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
                         <a href="{{ url('/dashboard/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Dashboard"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>

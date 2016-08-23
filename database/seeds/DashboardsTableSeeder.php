@@ -13,6 +13,7 @@ class DashboardsTableSeeder extends Seeder
     {
         DB::table('dashboards')->insert([
             'title' => 'All',
+            'sql' => '1=1',
         ]);
     }
 }
