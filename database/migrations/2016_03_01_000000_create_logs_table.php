@@ -23,7 +23,7 @@ class CreateLogsTable extends Migration
             $table->string('level_name', 100);
             $table->text('context');
             $table->text('formatted');
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->index();
         });
     }
 
