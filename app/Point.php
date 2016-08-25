@@ -33,19 +33,6 @@ class Point extends Model
     protected $fillable = ['name', 'district_id', 'district', 'street', 'building', 'entrance', 'status', 'ip', 'port'];
 
     /**
-     * @param $status
-     * @return bool
-     */
-    public function changeStatus($status)
-    {
-        $this->setAttribute('status', $status);
-
-        if ($this->save()) {
-            Log::info("point status changed");
-        }
-    }
-
-    /**
      * Get the netdevice that owns the point.
      */
     public function netdevice()
@@ -61,12 +48,28 @@ class Point extends Model
         return $this->belongsToMany(Dashboard::class);
     }
 
-    public function refreshStatus()
+    /**
+     * @param $status
+     * @return void
+     */
+    public function changeStatus($status)
     {
-        Log::debug("try check point status!!");
+        if (!empty($status)) {
+            $this->setAttribute('status', $status);
+            if ($this->isDirty('status')) {
+                $this->save();
+            }
+        }
+    }
 
+    /**
+     * Get status via netdevice relation
+     * @return string
+     */
+    public function requestStatus()
+    {
         if (null !== $this->netdevice) {
-            $this->changeStatus($this->netdevice->getPortStatus($this->port));
+            return $this->netdevice->getPortStatus($this->getAttribute('port'));
         }
     }
 }

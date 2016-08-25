@@ -39,7 +39,8 @@ class RefreshLinksStatus extends Command
     public function handle()
     {
         Point::where('status', '!=', 'up')->each(function (Point $point) {
-            $point->refreshStatus();
+            $this->log->debug("try check point status!! " . $point->ip);
+            $point->changeStatus($point->requestStatus());
         });
     }
 }
