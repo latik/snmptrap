@@ -14,29 +14,27 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return void
      */
     public function index()
     {
         $dashboard = Dashboard::paginate(15);
 
-        return view('dashboard.index', compact('dashboard'));
+        return $this->view->make('dashboard.index', compact('dashboard'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return void
      */
     public function create()
     {
-        return view('dashboard.create');
+        return $this->view->make('dashboard.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return void
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -52,37 +50,37 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
         $dashboard = Dashboard::findOrFail($id);
 
-        return view('dashboard.show', compact('dashboard'));
+        return $this->view->make('dashboard.show', compact('dashboard'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
         $dashboard = Dashboard::findOrFail($id);
 
-        return view('dashboard.edit', compact('dashboard'));
+        return $this->view->make('dashboard.edit', compact('dashboard'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
@@ -99,9 +97,9 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

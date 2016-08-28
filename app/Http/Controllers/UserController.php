@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use App\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Session;
 
 class UserController extends Controller
@@ -15,33 +11,31 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return void
      */
     public function index()
     {
         $user = User::paginate(15);
 
-        return view('user.index', compact('user'));
+        return $this->view->make('user.index', compact('user'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return void
      */
     public function create()
     {
-        return view('user.create');
+        return $this->view->make('user.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return void
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        
+
         User::create($request->all());
 
         Session::flash('flash_message', 'User added!');
@@ -52,41 +46,42 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
         $user = User::findOrFail($id);
 
-        return view('user.show', compact('user'));
+        return $this->view->make('user.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
         $user = User::findOrFail($id);
 
-        return view('user.edit', compact('user'));
+        return $this->view->make('user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
-        
+
         $user = User::findOrFail($id);
         $user->update($request->all());
 
@@ -98,9 +93,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

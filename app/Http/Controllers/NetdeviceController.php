@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Netdevice;
 use App\Point;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use Session;
 
@@ -16,29 +13,26 @@ class NetdeviceController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return void
      */
     public function index()
     {
         $netdevice = Netdevice::paginate(15);
 
-        return view('netdevice.index', compact('netdevice'));
+        return $this->view->make('netdevice.index', compact('netdevice'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return void
      */
     public function create()
     {
-        return view('netdevice.create');
+        return $this->view->make('netdevice.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @return void
      */
     public function store(Request $request)
     {
@@ -59,13 +53,13 @@ class NetdeviceController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
         $netdevice = Netdevice::findOrFail($id);
 
-        return view('netdevice.show', compact('netdevice'));
+        return $this->view->make('netdevice.show', compact('netdevice'));
     }
 
     /**
@@ -73,13 +67,13 @@ class NetdeviceController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
         $netdevice = Netdevice::findOrFail($id);
 
-        return view('netdevice.edit', compact('netdevice'));
+        return $this->view->make('netdevice.edit', compact('netdevice'));
     }
 
     /**
@@ -87,7 +81,7 @@ class NetdeviceController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
@@ -109,7 +103,7 @@ class NetdeviceController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

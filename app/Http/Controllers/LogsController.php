@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use App\Logs;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Session;
 
 class LogsController extends Controller
@@ -15,30 +11,28 @@ class LogsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return void
      */
     public function index()
     {
         $logs = Logs::orderBy('created_at', 'desc')
             ->paginate(15);
 
-        return view('logs.index', compact('logs'));
+        return $this->view->make('logs.index', compact('logs'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return void
      */
     public function create()
     {
-        return view('logs.create');
+        return $this->view->make('logs.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return void
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -55,13 +49,13 @@ class LogsController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
         $log = Logs::findOrFail($id);
 
-        return view('logs.show', compact('log'));
+        return $this->view->make('logs.show', compact('log'));
     }
 
     /**
@@ -69,13 +63,13 @@ class LogsController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $log = Logs::findOrFail($id);
 
-        return view('logs.edit', compact('log'));
+        return $this->view->make('logs.edit', compact('log'));
     }
 
     /**
@@ -83,7 +77,7 @@ class LogsController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
@@ -101,7 +95,7 @@ class LogsController extends Controller
      *
      * @param  int $id
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
