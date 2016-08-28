@@ -4,9 +4,15 @@ namespace App\Console\Commands;
 
 use App\Point;
 use Illuminate\Console\Command;
+use Illuminate\Log\Writer as Log;
 
 class RefreshLinksStatus extends Command
 {
+    /**
+     * @var Log
+     */
+    protected $log;
+
     /**
      * The name and signature of the console command.
      *
@@ -24,11 +30,12 @@ class RefreshLinksStatus extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param Log $log
      */
-    public function __construct()
+    public function __construct(Log $log)
     {
         parent::__construct();
+        $this->log = $log;
     }
 
     /**

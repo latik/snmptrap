@@ -6,10 +6,15 @@ use App\Events\LinkChangeTrap;
 use App\Trap;
 use Event;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Log\Writer as Log;
+
 
 class TrapHandler extends Command
 {
+    /**
+     * @property Log log
+     */
+    protected $log;
     /**
      * The name and signature of the console command.
      *
@@ -26,11 +31,12 @@ class TrapHandler extends Command
 
     /**
      * Create a new command instance.
-     *
+     * @param Log $log
      */
-    public function __construct()
+    public function __construct(Log $log)
     {
         parent::__construct();
+        $this->log = $log;
     }
 
     /**
@@ -67,9 +73,7 @@ class TrapHandler extends Command
             case 'iso.0.8802.1.1.2.0.0.1':                          //lldpRemTablesChange
                 break;
             default:
-                Log::debug("Unknown trap {$trap->oid} from {$trap->ip}");
+                $this->log->debug("Unknown trap {$trap->oid} from {$trap->ip}");
         }
-
-        //Log::debug($input);
     }
 }
