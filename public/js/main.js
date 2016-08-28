@@ -96,5 +96,5 @@ $(document).ready(function () {
     };
 
     checkStatus();
-    setInterval(checkStatus, 1500);
+    setInterval(checkStatus, 30000);
 });
