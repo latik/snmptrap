@@ -23,7 +23,6 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>id</th>
                     <th> {{ trans('point.name') }} </th>
                     <th> {{ trans('point.ip') }} </th>
@@ -34,11 +33,8 @@
                 </tr>
             </thead>
             <tbody>
-            {{-- */$x=0;/* --}}
             @foreach($point as $item)
-                {{-- */$x++;/* --}}
                 <tr>
-                    <td>{{ $x }}</td>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->ip }}</td>

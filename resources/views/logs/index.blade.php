@@ -20,7 +20,6 @@
                     <td>{{ $item->level_name }}</td>
                     <td>{{ $item->message }}</td>
                     <td>{{ $item->created_at }}</td>
-
                     <td>
                         <a href="{{ url('/logs/' . $item->id) }}" class="btn btn-success btn-xs" title="View Log"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
                         <a href="{{ url('/logs/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Log"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>

@@ -8,15 +8,12 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th><th> {{ trans('netdevice.city') }} </th><th> {{ trans('netdevice.new_district') }} </th><th> {{ trans('netdevice.street_name') }} </th><th>Actions</th>
+                    <th> {{ trans('netdevice.city') }} </th><th> {{ trans('netdevice.new_district') }} </th><th> {{ trans('netdevice.street_name') }} </th><th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-            {{-- */$x=0;/* --}}
             @foreach($netdevice as $item)
-                {{-- */$x++;/* --}}
                 <tr>
-                    <td>{{ $x }}</td>
                     <td>{{ $item->city }}</td><td>{{ $item->new_district }}</td><td>{{ $item->street_name }}</td>
                     <td>
                         <a href="{{ url('/netdevice/' . $item->id) }}" class="btn btn-success btn-xs" title="View Netdevice"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"/></a>
