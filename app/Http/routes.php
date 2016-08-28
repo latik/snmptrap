@@ -25,6 +25,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['middleware' => ['auth.basic']], function () {
+        Route::resource('user', 'UserController');
         Route::resource('logs', 'LogsController');
         Route::resource('point', 'PointController');
         Route::resource('netdevice', 'NetdeviceController');
