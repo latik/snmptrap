@@ -67,7 +67,7 @@ class PointTest extends TestCase
         Event::shouldReceive('fire')->twice()->withArgs(['point.updated', Mockery::any()]);
 
         $this->point->setAttribute('status', 'up');
-        $this->assertTrue($this->point->save());
+        $this->assertFalse($this->point->save());
         $this->assertEquals('up', $this->point->getAttribute('status'));
 
         $this->point->setAttribute('status', 'down');
