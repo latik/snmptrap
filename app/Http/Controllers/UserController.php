@@ -10,7 +10,6 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      */
     public function index()
     {
@@ -21,7 +20,6 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create()
     {
@@ -30,12 +28,13 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-
         User::create($request->all());
 
         Session::flash('flash_message', 'User added!');
@@ -46,7 +45,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -60,7 +59,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -74,14 +73,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
-     *
+     * @param int     $id
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
-
         $user = User::findOrFail($id);
         $user->update($request->all());
 
@@ -93,7 +91,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

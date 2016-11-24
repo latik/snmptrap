@@ -15,7 +15,6 @@ class PasswordsTest extends TestCase
         $this->assertTrue(Hash::check($password, $hash));
     }
 
-
     /**
      * A basic test example.
      *

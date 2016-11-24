@@ -10,7 +10,6 @@ class PointController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      */
     public function index()
     {
@@ -21,7 +20,6 @@ class PointController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create()
     {
@@ -30,13 +28,15 @@ class PointController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'ip' => 'required|ip',
+            'ip'   => 'required|ip',
             'port' => "required|integer|unique:points,port,null,ip,ip,{$request->input('ip')}",
         ]);
 
@@ -50,7 +50,7 @@ class PointController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -64,7 +64,7 @@ class PointController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -78,15 +78,15 @@ class PointController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
-     *
+     * @param int     $id
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
         $this->validate($request, [
-            'ip' => 'required|ip',
+            'ip'   => 'required|ip',
             'port' => "unique:points,port,{$id},id,ip,{$request->input('ip')}",
         ]);
 
@@ -101,7 +101,7 @@ class PointController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

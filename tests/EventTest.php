@@ -9,7 +9,6 @@ class EventTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     *
      * @return void
      */
     public function test_event_firing_with_trap_mock()

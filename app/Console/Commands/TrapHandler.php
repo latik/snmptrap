@@ -8,7 +8,6 @@ use Event;
 use Illuminate\Console\Command;
 use Illuminate\Log\Writer as Log;
 
-
 class TrapHandler extends Command
 {
     /**
@@ -31,6 +30,7 @@ class TrapHandler extends Command
 
     /**
      * Create a new command instance.
+     *
      * @param Log $log
      */
     public function __construct(Log $log)

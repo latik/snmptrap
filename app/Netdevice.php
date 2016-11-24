@@ -45,7 +45,7 @@ class Netdevice extends Model
         'parent_mac',
         'parent_port',
         'abon_current',
-        's_level'
+        's_level',
     ];
 
     /**
@@ -74,7 +74,7 @@ class Netdevice extends Model
             7 => 'lowerLayerDown',  // down due to state of lower-layer interface(s)
         ];
 
-        $status_code = $this->snmp_get('ifOperStatus.' . $port);
+        $status_code = $this->snmp_get('ifOperStatus.'.$port);
 
         if (isset($status_map[$status_code])) {
             return $status_map[$status_code];
@@ -85,6 +85,7 @@ class Netdevice extends Model
     {
         snmp_set_valueretrieval(SNMP_VALUE_PLAIN);
         snmp_set_oid_numeric_print(true);
+
         return @snmp2_get($this->ip, $this->community, $oid);
     }
 }

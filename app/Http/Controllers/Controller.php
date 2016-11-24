@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $view;
-    
+
     public function __construct(View $view)
     {
         $this->view = $view;
