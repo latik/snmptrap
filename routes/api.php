@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +13,7 @@ use Illuminate\Http\Request;
 */
 
 Route::group([
-    'prefix' => 'api',
+    'prefix'     => 'api',
     'middleware' => 'auth:api',
 ], function () {
     Route::resource('point', 'PointRestController');

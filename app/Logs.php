@@ -14,10 +14,10 @@ class Logs extends Model
     protected $table = 'logs';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**

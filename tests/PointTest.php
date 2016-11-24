@@ -22,8 +22,8 @@ class PointTest extends TestCase
         parent::setUp();
 
         $this->point = Point::create([
-            'ip' => '127.0.0.1',
-            'port' => '9999',
+            'ip'     => '127.0.0.1',
+            'port'   => '9999',
             'status' => 'up',
         ]);
 
@@ -36,7 +36,6 @@ class PointTest extends TestCase
     }
 
     /**
-     *
      * @return void
      */
     public function test_status()

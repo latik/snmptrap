@@ -22,7 +22,7 @@ class HashServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('hash', function () {
-            return new APR1MD5Hasher;
+            return new APR1MD5Hasher();
         });
     }
 

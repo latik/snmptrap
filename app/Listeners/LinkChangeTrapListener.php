@@ -7,7 +7,6 @@ use App\Point;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Log\Writer as Log;
 
-
 class LinkChangeTrapListener
 {
     /**
@@ -29,6 +28,7 @@ class LinkChangeTrapListener
      * Handle the event.
      *
      * @param LinkChangeTrap $event
+     *
      * @internal param LinkChangeTrap $trap
      */
     public function handle(LinkChangeTrap $event)
@@ -39,9 +39,8 @@ class LinkChangeTrapListener
                 ->firstOrFail();
 
             $point->changeStatus($event->trap->status);
-
         } catch (ModelNotFoundException $e) {
-            $this->log->info("Point not found.");
+            $this->log->info('Point not found.');
         }
 
         $this->log->info("trap catched: ip: {$event->trap->ip} port: {$event->trap->port} link: {$event->trap->status}");

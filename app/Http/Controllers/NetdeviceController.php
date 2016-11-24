@@ -12,7 +12,6 @@ class NetdeviceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      */
     public function index()
     {
@@ -23,7 +22,6 @@ class NetdeviceController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create()
     {
@@ -32,12 +30,11 @@ class NetdeviceController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'ip' => 'ip',
+            'ip'  => 'ip',
             'mac' => 'required|unique:netdevices,mac',
         ]);
 
@@ -51,7 +48,7 @@ class NetdeviceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -65,7 +62,7 @@ class NetdeviceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -79,14 +76,14 @@ class NetdeviceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
         $this->validate($request, [
-            'ip' => 'ip',
+            'ip'  => 'ip',
             'mac' => 'required|unique:netdevices,mac,id',
         ]);
 
@@ -101,7 +98,7 @@ class NetdeviceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -114,13 +111,12 @@ class NetdeviceController extends Controller
         return redirect('netdevice');
     }
 
-
     public function import(Request $request)
     {
         \DB::table('netdevices')->truncate();
 
         $this->validate($request, [
-            'file' => 'required'
+            'file' => 'required',
         ]);
 
         try {
@@ -141,13 +137,13 @@ class NetdeviceController extends Controller
                 if ($parent) {
                     $point_data = [
                         'district_id' => 1,
-                        'name' => $netdevice->dev_name,
-                        'district' => $netdevice->new_district,
-                        'street' => $netdevice->street_name,
-                        'building' => $netdevice->house_name,
-                        'entrance' => $netdevice->doorway,
-                        'port' => $netdevice->parent_port,
-                        'ip' => $parent->ip,
+                        'name'        => $netdevice->dev_name,
+                        'district'    => $netdevice->new_district,
+                        'street'      => $netdevice->street_name,
+                        'building'    => $netdevice->house_name,
+                        'entrance'    => $netdevice->doorway,
+                        'port'        => $netdevice->parent_port,
+                        'ip'          => $parent->ip,
                     ];
 
                     $point = Point::firstOrCreate($point_data);
@@ -156,7 +152,6 @@ class NetdeviceController extends Controller
             \Session::flash('success', 'Netswitches imported successfully.');
 
             return redirect(route('point.index'));
-
         } catch (\Exception $e) {
             \Session::flash('error', $e->getMessage());
 

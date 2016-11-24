@@ -3,11 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Log;
 
 /**
- * Class Point
- * @package App
+ * Class Point.
  */
 class Point extends Model
 {
@@ -50,6 +48,7 @@ class Point extends Model
 
     /**
      * @param $status
+     *
      * @return void
      */
     public function changeStatus($status)
@@ -63,7 +62,8 @@ class Point extends Model
     }
 
     /**
-     * Get status via netdevice relation
+     * Get status via netdevice relation.
+     *
      * @return string
      */
     public function requestStatus()

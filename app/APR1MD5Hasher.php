@@ -8,13 +8,13 @@ use WhiteHat101\Crypt\APR1_MD5;
 
 class APR1MD5Hasher extends BcryptHasher implements HasherContract
 {
-
     /**
      * Check the given plain value against a hash.
      *
-     * @param  string $value
-     * @param  string $hashedValue
-     * @param  array $options
+     * @param string $value
+     * @param string $hashedValue
+     * @param array  $options
+     *
      * @return bool
      */
     public function check($value, $hashedValue, array $options = [])

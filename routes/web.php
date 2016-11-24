@@ -17,7 +17,7 @@ Route::get('logout', function () {
     Auth::logout();
     Session::flush();
 
-    return Redirect::to(preg_replace("/:\/\//", "://log:out@", url('/')));
+    return Redirect::to(preg_replace("/:\/\//", '://log:out@', url('/')));
 });
 
 Route::group(['middleware' => ['auth.basic']], function () {
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth.basic']], function () {
     Route::get('/', function () {
         return view('home', [
             'dashboards' => \App\Dashboard::all(),
-            'active' => 1,
+            'active'     => 1,
         ]);
     });
 

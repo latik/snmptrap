@@ -3,8 +3,7 @@
 namespace App;
 
 /**
- * Class Trap
- * @package App
+ * Class Trap.
  */
 class Trap
 {
@@ -30,8 +29,10 @@ class Trap
      * @var string
      */
     public $oid = '';
+
     /**
      * Trap constructor.
+     *
      * @param $input
      */
     public function __construct($input)
@@ -45,8 +46,10 @@ class Trap
     }
 
     /**
-     * Extract ip from input
+     * Extract ip from input.
+     *
      * @param $input
+     *
      * @return null
      */
     protected function getIpAddress($input)
@@ -61,8 +64,10 @@ class Trap
     }
 
     /**
-     * Extract port
+     * Extract port.
+     *
      * @param $input
+     *
      * @return string $status
      */
     protected function getOID($input)
@@ -71,8 +76,10 @@ class Trap
     }
 
     /**
-     * Extract port
+     * Extract port.
+     *
      * @param $input
+     *
      * @return int
      */
     protected function getPort($input)
@@ -81,8 +88,10 @@ class Trap
     }
 
     /**
-     * Extract status
+     * Extract status.
+     *
      * @param $input
+     *
      * @return string $status
      */
     protected function getStatus($input)
@@ -91,8 +100,8 @@ class Trap
     }
 
     /**
-     *
      * @param $input
+     *
      * @return static
      */
     public static function createFromInput($input)
@@ -101,11 +110,14 @@ class Trap
     }
 
     /**
-     * Extract param value from string
+     * Extract param value from string.
+     *
      * @param $input
      * @param $regex
      * @param $offset
+     *
      * @internal param $match
+     *
      * @return null|mixed
      */
     protected function extractParam($input, $regex, $offset)

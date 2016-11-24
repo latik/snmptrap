@@ -14,10 +14,10 @@ class Dashboard extends Model
     protected $table = 'dashboards';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -32,7 +32,6 @@ class Dashboard extends Model
      */
     public function points()
     {
-
         return $this
             ->belongsToMany(Point::class)
             ->orWhereRaw($this->getAttribute('sql'))
